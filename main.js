@@ -21,6 +21,7 @@ const cardsArray = [
         id: 3,
         sideColor: "#344ceb",
         pictureUrl: "assets/route-picture.jpg",
+        type: ["cat","medal"],
         type1: "fa-solid fa-cat",
         type2: "fa-solid fa-medal",
         repeatNr: "10"
@@ -114,7 +115,7 @@ function createCard(card) {
     return cardLink;
 }
 
-if (cardSection != null) {
+if (cardSection !== null) {
     cardsArray.forEach(function (card) {
         while (cardSection.firstChild) {
             cardSection.removeChild(cardSection.firstChild);

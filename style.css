@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Hedvig+Letters+Sans&display=swap');
+
 /* Icons CSS */
 
 .comp-icon{
@@ -32,6 +34,11 @@
 
 /* User page CSS */
 
+*{
+    font-family: 'Hedvig Letters Sans', sans-serif; 
+    font-weight: bold;
+}
+
 .fixed-navbar{
     background-color: #564256;
     height: 10vh;
@@ -39,7 +46,7 @@
     top: 0;
 }
 
-.filter-section{
+.closed-filters{
     background-color: #564256;
     height: 20vh;
 }
@@ -49,11 +56,33 @@
     color: rgb(255, 255, 255);
 }
 
+.filter-section{
+    background-color: #564256;
+    position: sticky;
+    top: 0;
+}
+
 .filter-options-button{
     text-decoration: none;
-    color: white;
+    color: white!important;
+    background-color: #7f657f!important;
+}
 
-    
+.filter-type{
+    color: #f3f3f3;
+    border-bottom: 1px solid white;
+    padding-bottom: 5px;
+}
+
+.filter-button{
+    text-decoration: none;
+    color: #564256!important;
+    background-color: #C1C1C1!important;
+    line-height: 20px!important;
+    display: block!important;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.35);
+    width: 50%;
+    margin: 5px;
 }
 
 
