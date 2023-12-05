@@ -128,6 +128,11 @@ if (cardSection !== null) {
 
 }
 
+function toggleFilterSection() {
+    var filterSection = document.getElementById('filterSection');
+    filterSection.classList.toggle('hidden');
+}
+
 
 
 
