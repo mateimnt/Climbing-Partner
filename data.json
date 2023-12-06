@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "sideColor": "green",
+        "pictureUrl": "assets/route-picture.jpg",
+        "type": ["fa-cat","fa-medal","fa-dumbb  ell"],
+        "repeatNr": " nr"
+    },
+    {
+        "id": 2,
+        "sideColor": "red",
+        "pictureUrl": "assets/route-picture.jpg",
+        "type": ["fa-cat","fa-medal"],
+        "repeatNr": " nr"
+    },
+    {
+        "id": 3,
+        "sideColor": "black",
+        "pictureUrl": "assets/route-picture.jpg",
+        "type": ["fa-cat","fa-medal"],
+        "repeatNr": " nr"
+    },
+    {
+        "id": 4,
+        "sideColor": "blue",
+        "pictureUrl": "assets/route-picture.jpg",
+        "type": ["fa-cat","fa-medal"],
+        "repeatNr": " nr"
+    },
+    {
+        "id": 5,
+        "sideColor": "green",
+        "pictureUrl": "assets/route-picture.jpg",
+        "type": ["fa-cat","fa-medal"],
+        "repeatNr": " nr"
+    }
+]

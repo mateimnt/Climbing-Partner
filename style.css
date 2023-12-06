@@ -36,6 +36,26 @@
 
 /* End icons CSS */
 
+/* Side colors css */
+
+.green{
+    background-color: green;
+}
+
+.black{
+    background-color: #000000;
+}
+
+.red{
+    background-color: red;
+}
+
+.blue{
+    background-color: blue;
+}
+
+/* End side colors css */
+
 /* User page CSS */
 
 *{
@@ -52,7 +72,7 @@
 
 .closed-filters{
     background-color: #564256;
-    height: 20vh;
+    height: 25vh;
 }
 
 .no-of-routes{
@@ -61,6 +81,9 @@
 }
 
 .filter-section{
+    max-height: 1000px;
+    overflow: hidden;
+    transition: max-height 0.5s ease;
     background-color: #564256;
     top: 0;
 }
@@ -145,11 +168,11 @@
 }
 
 .route-side-color{
-    width: 10px;
+    width: 15px;
     height: 100%;
+    border-right: 5px solid #d7d7d7;
 }
 
-.hidden {
-    display: none;
+.filter-section.hidden {
+    max-height: 0;
 }
-
