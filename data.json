@@ -3,7 +3,7 @@
         "id": 1,
         "sideColor": "green",
         "pictureUrl": "assets/route-picture.jpg",
-        "type": ["fa-cat","fa-medal","fa-dumbb  ell"],
+        "type": ["fa-cat","fa-medal","fa-dumbbell"],
         "repeatNr": " nr"
     },
     {
@@ -29,6 +29,13 @@
     },
     {
         "id": 5,
+        "sideColor": "green",
+        "pictureUrl": "assets/route-picture.jpg",
+        "type": ["fa-cat","fa-medal"],
+        "repeatNr": " nr"
+    },
+    {
+        "id": 6,
         "sideColor": "green",
         "pictureUrl": "assets/route-picture.jpg",
         "type": ["fa-cat","fa-medal"],

@@ -11,123 +11,154 @@
 </head>
 
 <body>
-    <!-- Navbar -->
-    <nav class="fixed-navbar">
-        <div class="container h-100">
-            <div class="row h-100">
-                <div class="col-12 d-flex justify-content-between align-items-center h-100">
-                    <a href="competiton-page.html" class="comp-icon"><i class="fa-solid fa-crown"></i></a>
-                    <a href="gym-sector.html" class="navbar-logo h-100">
-                        <img class="img-fluid h-100 py-2" src="assets/Zygbo_logo_white.png" alt="zygbo-logo-white">
-                    </a>
-                    <a href="user-menu.html" class="user-icon"><i class="fa-solid fa-circle-user"></i></a>
+    <!-- Main user page -->
 
+    <div class="main-user-page">
+
+        <!-- Navbar -->
+        <nav class="fixed-navbar">
+            <div class="container h-100">
+                <div class="row h-100">
+                    <div class="col-12 d-flex justify-content-between align-items-center h-100">
+                        <a href="competiton-page.html" class="comp-icon"><i class="fa-solid fa-crown"></i></a>
+                        <a href="gym-sector.html" class="navbar-logo h-100">
+                            <img class="img-fluid h-100 py-2" src="assets/Zygbo_logo_white.png" alt="zygbo-logo-white">
+                        </a>
+                        <a href="user-menu.html" class="user-icon"><i class="fa-solid fa-circle-user"></i></a>
+
+                    </div>
+                </div>
+            </div>  
+        </nav>
+        <!-- End -->
+
+        <!-- No. of routes and filter button -->
+        <div class="closed-filters">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 d-flex flex-column justify-content-center align-items-center pt-5">
+                        <h5 class="no-of-routes">10 Routes</h5>
+                        <button type="button" class="filter-options-button btn my-1 " onclick="toggleFilterSection()">Filter Options</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </nav>
-    <!-- End -->
+        <!-- End -->
 
-    <!-- No. of routes and filter button -->
-    <div class="closed-filters">
+        <!-- Filters Show -->
+        <div class="filter-section hidden" id="filterSection">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 d-flex flex-column justify-content-center align-items-center pt-2">
+                        <h2 class="filter-type w-100">Order</h2>
+                        <h6 class="filter-type w-100 border-0">By Date</h6>
+                        <div class="filter-buttons w-100 pb-3">
+                            <div class="button-half">
+                                <button type="button" class="filter-button" data-group="group1" onclick="toggleOneButton(this)">New</button>
+                            </div>
+                            <div class="button-half">
+                                <button type="button" class="filter-button" data-group="group1" onclick="toggleOneButton(this)">Old</button>
+                            </div>
+                            <div class="button-half">
+                                <button type="button" class="filter-button" data-group="group1" onclick="toggleOneButton(this)">Scheduled for Removal</button>
+                            </div>
+                        </div>
+                        <h6 class="filter-type w-100 border-0">By Repetitions</h6>
+                        <div class="filter-buttons w-100 pb-3">
+                            <div class="button-half">
+                                <button type="button" class="filter-button" data-group="group2" onclick="toggleOneButton(this)">Many</button>
+                            </div>
+                            <div class="button-half">
+                                <button type="button" class="filter-button" data-group="group2" onclick="toggleOneButton(this)">Few</button>
+                            </div>
+                        </div>
+                        <h6 class="filter-type w-100 border-0">By Rating</h6>
+                        <div class="filter-buttons w-100 pb-3">
+                            <div class="button-half">
+                                <button type="button" class="filter-button" data-group="group3" onclick="toggleOneButton(this)">Best</button>
+                            </div>
+                            <div class="button-half">
+                                <button type="button" class="filter-button" data-group="group3" onclick="toggleOneButton(this)">Worst</button>
+                            </div>
+                        </div>
+                        <h2 class="filter-type w-100">Filter</h2>
+                        <h6 class="filter-type w-100 border-0">By Tape Color</h6>
+                        <div class="filter-buttons d-flex  justify-content-between w-100 pb-3">
+                            <button type="button" class="clr-green filter-button" style="border: none;" onclick="toggleColorsButtons(this)">
+                                <i class="fa-solid fa-check hidden"></i>
+                            </button>
+                            <button type="button" class="clr-red filter-button" style="border: none;" onclick="toggleColorsButtons(this)">
+                                <i class="fa-solid fa-check hidden"></i>
+                            </button>
+                            <button type="button" class="clr-yellow filter-button" style="border: none;" onclick="toggleColorsButtons(this)">
+                                <i class="fa-solid fa-check hidden"></i>
+                            </button>
+                            <button type="button" class="clr-blue filter-button" style="border: none;" onclick="toggleColorsButtons(this)">
+                                <i class="fa-solid fa-check hidden"></i>
+                            </button>
+                            <button type="button" class="clr-black filter-button" style="border: none;" onclick="toggleColorsButtons(this)">
+                                <i class="fa-solid fa-check hidden"></i>
+                            </button>
+                            <button type="button" class="clr-white filter-button" style="border: none;" onclick="toggleColorsButtons(this)">
+                                <i class="fa-solid fa-check hidden"></i>
+                            </button>
+                        </div>
+                        <h6 class="filter-type w-100 border-0">By Setter</h6>
+                        <div class="filter-buttons w-100 pb-3">
+                            <div class="button-half">
+                                <button type="button" class="filter-button" onclick="toggleMultipleButtons(this)">Matei</button>
+                            </div>
+                            <div class="button-half">
+                                <button type="button" class="filter-button" onclick="toggleMultipleButtons(this)">Iris</button>
+                            </div>
+                        </div>
+                        <h6 class="filter-type w-100 border-0">By Type</h6>
+                        <div class="filter-buttons w-100 pb-3">
+                            <div class="button-half">
+                                <button type="button" class="filter-button" onclick="toggleMultipleButtons(this)"> 
+                                    Power     
+                                    <i class="filter-icon fa-solid fa-dumbbell mx-1" aria-hidden="true"></i>    
+                                </button>
+                            </div>
+                            <div class="button-half">
+                                <button type="button" class="filter-button" onclick="toggleMultipleButtons(this)">
+                                    Tricky     
+                                    <i class="filter-icon fa-solid fa-cat mx-1" aria-hidden="true"></i>    
+                                </button>
+                            </div>
+                            <div class="button-half">
+                                <button type="button" class="filter-button" onclick="toggleMultipleButtons(this)">
+                                    Rewarding     
+                                    <i class="filter-icon fa-solid fa-medal mx-1" aria-hidden="true"></i>    
+                                </button>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End -->
+
+        <!-- Route cards -->
         <div class="container">
             <div class="row">
-                <div class="col-12 d-flex flex-column justify-content-center align-items-center pt-5">
-                    <h5 class="no-of-routes">10 Routes</h5>
-                    <button type="button" class="filter-options-button btn my-1 " onclick="toggleFilterSection()">Filter Options</button>
+                <div class="col-12 d-flex flex-column justify-content-center align-items-center" id="card-section">
                 </div>
             </div>
         </div>
+        <!-- End -->
+
     </div>
     <!-- End -->
 
-    <!-- Filters Show -->
-    <div class="filter-section hidden" id="filterSection">
+    <!-- One route page -->
+    <div class="route-page">
         <div class="container">
             <div class="row">
-                <div class="col-12 d-flex flex-column justify-content-center align-items-center pt-2">
-                    <h2 class="filter-type w-100">Order</h2>
-                    <h5 class="filter-type w-100 border-0">By Date</h5>
-                    <div class="filter-buttons w-100 pb-3">
-                        <div class="button-half">
-                            <button type="button" class="btn filter-button">New</button>
-                        </div>
-                        <div class="button-half">
-                            <button type="button" class="btn filter-button">Old</button>
-                        </div>
-                        <div class="button-half">
-                            <button type="button" class="btn filter-button">Scheduled for Removal</button>
-                        </div>
-                    </div>
-                    <h5 class="filter-type w-100 border-0">By Repetitions</h5>
-                    <div class="filter-buttons w-100 pb-3">
-                        <div class="button-half">
-                            <button type="button" class="btn filter-button">Many</button>
-                        </div>
-                        <div class="button-half">
-                            <button type="button" class="btn filter-button">Few</button>
-                        </div>
-                    </div>
-                    <h5 class="filter-type w-100 border-0">By Rating</h5>
-                    <div class="filter-buttons w-100 pb-3">
-                        <div class="button-half">
-                            <button type="button" class="btn filter-button">Best</button>
-                        </div>
-                        <div class="button-half">
-                            <button type="button" class="btn filter-button">Worst</button>
-                        </div>
-                    </div>
-                    <h2 class="filter-type w-100">Filter</h2>
-                    <h5 class="filter-type w-100 border-0">By Tape Color</h5>
-                    <div class="filter-buttons d-flex  justify-content-between w-100 pb-3">
-                        <button type="button" class="clr-green btn filter-button background-color-green">Green</button>
-                        <button type="button" class="clr-red btn filter-button">Red</button>
-                        <button type="button" class="clr-yellow btn filter-button">Yellow</button>
-                        <button type="button" class="clr-blue btn filter-button">Blue</button>
-                        <button type="button" class="clr-black btn filter-button">Black</button>
-                        <button type="button" class="clr-white btn filter-button">White</button>
-                    </div>
-                    <h5 class="filter-type w-100 border-0">By Setter</h5>
-                    <div class="filter-buttons w-100 pb-3">
-                        <div class="button-half">
-                            <button type="button" class="btn filter-button">Matei</button>
-                        </div>
-                        <div class="button-half">
-                            <button type="button" class="btn filter-button">Iris</button>
-                        </div>
-                    </div>
-                    <h5 class="filter-type w-100 border-0">By Type</h5>
-                    <div class="filter-buttons w-100 pb-3">
-                        <div class="button-half">
-                            <button type="button" class="btn filter-button">
-                                Power     
-                                <i class="filter-icon fa-solid fa-dumbbell mx-1" aria-hidden="true"></i>    
-                            </button>
-                        </div>
-                        <div class="button-half">
-                            <button type="button" class="btn filter-button">
-                                Tricky     
-                                <i class="filter-icon fa-solid fa-cat mx-1" aria-hidden="true"></i>    
-                            </button>
-                        </div>
-                        <div class="button-half">
-                            <button type="button" class="btn filter-button">
-                                Rewarding     
-                                <i class="filter-icon fa-solid fa-medal mx-1" aria-hidden="true"></i>    
-                            </button>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- End -->
+                <div class="fixed-navbar">
 
-    <!-- Route cards -->
-    <div class="container">
-        <div class="row">
-            <div class="col-12 d-flex flex-column justify-content-center align-items-center" id="card-section">
+                </div>
             </div>
         </div>
     </div>

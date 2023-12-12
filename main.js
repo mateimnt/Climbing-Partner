@@ -41,6 +41,8 @@ function createCard(card) {
     let arrowIcon = document.createElement("div");
     arrowIcon.className = "card-arrow-icon fa-solid fa-angle-right";
 
+    arrowIcon.addEventListener("click", showRoutePage);
+
     arrowIconDiv.appendChild(arrowIcon);
 
     repeatIconDiv.appendChild(repeatIcon);
@@ -59,7 +61,7 @@ function createCard(card) {
 }
 
 function fetchDataAndCreateCards() {
-    fetch('data.json') // Assuming data.json is in the same directory
+    fetch('data.json') 
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -68,12 +70,10 @@ function fetchDataAndCreateCards() {
         })
         .then(cardsArray => {
             if (cardSection !== null) {
-                // Clear existing cards in cardSection
-                while (cardSection.firstChild) {
-                    cardSection.removeChild(cardSection.firstChild);
-                }
+                Array.from(cardSection.children).forEach(existingCard => {
+                    existingCard.style.display = 'none';
+                });
 
-                // Create new cards based on the fetched data
                 cardsArray.forEach(function (card) {
                     let routeCard = createCard(card);
                     cardSection.appendChild(routeCard);
@@ -85,16 +85,93 @@ function fetchDataAndCreateCards() {
         });
 }
 
+
 // Call the function to fetch data and create cards
 fetchDataAndCreateCards();
+
+// End
+
+// Toggle filter section
 
 function toggleFilterSection() {
     var filterSection = document.getElementById('filterSection');
     filterSection.classList.toggle('hidden');
 }
 
+// End
+
+// Show route page
+
+function showRoutePage() {
+    cardSection.classList.toggle('hidden');
+    document.querySelector(".route-page").style.display = "block";
+}
+
+// End
+
+// Toggle button
+
+let activeButtons = { group1: null, group2: null, group3: null };
+
+function toggleOneButton(button) {
+    if (!button || !button.dataset || !button.dataset.group) {
+        return;
+    }
+
+    const group = button.dataset.group;
+
+    if (activeButtons[group] !== null && activeButtons[group] !== button) {
+        activeButtons[group].style.backgroundColor = '';
+    }
+
+    if (button.style.backgroundColor === 'white' || button.style.backgroundColor === '') {
+        button.style.backgroundColor = 'white';
+        activeButtons[group] = button;
+    } else {
+        button.style.backgroundColor = '';
+        activeButtons[group] = null;
+    }
+}
+
+window.onload = function () {
+    const defaultGroup1Button = document.querySelector('[data-group="group1"]');
+    const defaultGroup2Button = document.querySelector('[data-group="group2"]');
+    const defaultGroup3Button = document.querySelector('[data-group="group3"]');
+
+    toggleOneButton(defaultGroup1Button);
+    toggleOneButton(defaultGroup2Button);
+    toggleOneButton(defaultGroup3Button);
+};
 
 
+
+
+
+function toggleMultipleButtons(button) {
+    // Change the background color directly
+    if (button.style.backgroundColor === 'white') {
+        button.style.backgroundColor = '#C1C1C1';
+    } else {
+        button.style.backgroundColor = 'white';
+    }
+}
+
+function toggleColorsButtons(button) {
+    var icon = button.querySelector('.fa-check');
+
+    icon.classList.toggle('hidden');
+
+    if (!icon.classList.contains('hidden')) {
+        button.style.backgroundColor = '';
+    } else {
+        button.style.backgroundColor = '';
+    }
+}
+
+
+
+
+// 
 
 
 
