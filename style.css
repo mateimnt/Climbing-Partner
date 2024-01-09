@@ -38,6 +38,11 @@
     display: none;
 }
 
+.back-arrow{
+    font-size: 30px;
+    color: #564256;
+}
+
 
 /* End icons CSS */
 
@@ -66,6 +71,13 @@
 *{
     font-family: 'Hedvig Letters Sans', sans-serif; 
     font-weight: bold;
+}
+
+.main-user-page {
+    transition: opacity 0.5s ease-in-out;
+}
+.main-user-page.hidden {
+    opacity: 0; 
 }
 
 .fixed-navbar{
@@ -176,7 +188,6 @@
 .route-side-color{
     width: 15px;
     height: 100%;
-    border-right: 5px solid #d7d7d7 ;
 }
 
 .filter-section.hidden {
@@ -188,3 +199,55 @@
 
 }
 
+/* End User Page CSS*/
+
+/* One route page CSS */
+
+.arrow-box{
+    background-color: #f3f3f3;
+    border-radius: 4px;
+}
+
+.one-route-page{
+    max-height: 1000px;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    z-index: 1000;
+    transition: right 0.5s ease-in-out;
+}
+
+.one-route-page.hidden {
+    max-height: 0;
+}
+
+.one-route-page.active {
+    right: 0;
+}
+    
+.one-route-image{
+    height: 65%;
+    padding-top: 60px;
+    overflow: hidden; 
+    border-radius: 7px;
+} 
+
+.border-radius-side-color {
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+}
+
+.border-radius-route-image {
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+
+.send-button{
+    margin-top: 15px;
+    width: fit-content;
+}
+/* End One route page CSS */

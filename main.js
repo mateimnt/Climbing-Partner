@@ -5,6 +5,7 @@ let cardSection = document.getElementById("card-section")
 function createCard(card) {
     let cardLink = document.createElement("a");
     cardLink.className = "card-example d-flex justify-content-between my-3";
+    cardLink.id = "cardLink";
 
     let cardDiv = document.createElement("div");
     cardDiv.className = "d-flex";
@@ -37,12 +38,10 @@ function createCard(card) {
 
     let arrowIconDiv = document.createElement("div");
     arrowIconDiv.className = "d-flex align-items-center mx-2";
-
+    
     let arrowIcon = document.createElement("div");
     arrowIcon.className = "card-arrow-icon fa-solid fa-angle-right";
-
-    arrowIcon.addEventListener("click", showRoutePage);
-
+    
     arrowIconDiv.appendChild(arrowIcon);
 
     repeatIconDiv.appendChild(repeatIcon);
@@ -56,6 +55,7 @@ function createCard(card) {
     cardLink.appendChild(cardDiv);
     cardLink.appendChild(routeInfo);
     cardLink.appendChild(arrowIconDiv);
+    cardLink.addEventListener('click', hideEverything);
 
     return cardLink;
 }
@@ -102,9 +102,22 @@ function toggleFilterSection() {
 
 // Show route page
 
-function showRoutePage() {
-    cardSection.classList.toggle('hidden');
-    document.querySelector(".route-page").style.display = "block";
+function toggleRoutePage() {
+    var routePage = document.getElementById('oneRoutePage');
+    routePage.classList.toggle('hidden');
+    routePage.classList.toggle('active');
+}
+
+function hideEverything() {
+    var mainUserPage = document.querySelector('.main-user-page');
+    mainUserPage.classList.add('hidden');
+    toggleRoutePage();
+}
+
+function showEverything() {
+    var mainUserPage = document.querySelector('.main-user-page');
+    mainUserPage.classList.toggle('hidden');
+    toggleRoutePage();
 }
 
 // End
@@ -148,7 +161,6 @@ window.onload = function () {
 
 
 function toggleMultipleButtons(button) {
-    // Change the background color directly
     if (button.style.backgroundColor === 'white') {
         button.style.backgroundColor = '#C1C1C1';
     } else {

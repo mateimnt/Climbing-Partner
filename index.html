@@ -153,15 +153,30 @@
     <!-- End -->
 
     <!-- One route page -->
-    <div class="route-page">
-        <div class="container">
-            <div class="row">
-                <div class="fixed-navbar">
-
+    <div class="one-route-page hidden" id="oneRoutePage">
+        <nav class="fixed-navbar">
+            <div class="container h-100">
+                <div class="row h-100">
+                    <div class="col-12 d-flex justify-content-between align-items-center h-100" onclick="showEverything()">
+                        <div class="arrow-box px-2 py-2">
+                            <i class="fa-solid back-arrow fa-arrow-left"></i>
+                        </div>
+                    </div>
                 </div>
-            </div>
-        </div>
+            </div>  
+        </nav>
+
+    <div class="one-route-image d-flex justify-content-center align-items-center flex-wrap">
+            <div class="route-side-color border-radius-side-color green"></div>
+            <img class="route-image border-radius-route-image" src="assets/route-picture.jpg">
     </div>
+
+    <div class="d-flex justify-content-center align-items-center">
+        <button type="button" class="send-button btn btn-secondary btn-lg btn-block">Send</button>
+    </div>
+        
+    
+           
     <!-- End -->
 
 
