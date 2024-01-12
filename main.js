@@ -183,6 +183,15 @@ function toggleColorsButtons(button) {
 
 
 
+// End
+
+// Flip One Route Page Card
+
+function toggleFlip() {
+    const container = document.querySelector('.flip-card');
+    container.classList.toggle('flipped');
+}
+
 // 
 
 
