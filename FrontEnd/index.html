@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <title>Zygbo</title>
+    <title>Climbing Partner</title>
 </head>
 
 <body>
@@ -22,7 +22,7 @@
                     <div class="col-12 d-flex justify-content-between align-items-center h-100">
                         <a href="competiton-page.html" class="comp-icon"><i class="fa-solid fa-crown"></i></a>
                         <a href="gym-sector.html" class="navbar-logo h-100">
-                            <img class="img-fluid h-100 py-2" src="assets/Zygbo_logo_white.png" alt="zygbo-logo-white">
+                            <img class="img-fluid h-100 py-2" src="assets/logo.png" alt="logo">
                         </a>
                         <a href="user-menu.html" class="user-icon"><i class="fa-solid fa-circle-user"></i></a>
 
@@ -38,7 +38,7 @@
                 <div class="row">
                     <div class="col-12 d-flex flex-column justify-content-center align-items-center pt-5">
                         <h5 class="no-of-routes">10 Routes</h5>
-                        <button type="button" class="filter-options-button btn my-1 " onclick="toggleFilterSection()">Filter Options</button>
+                        <button type="button" class="filter-options-button btn mt-3 " onclick="toggleFilterSection()">Filter Options</button>
                     </div>
                 </div>
             </div>
@@ -165,39 +165,51 @@
                 </div>
             </div>  
         </nav>
-
-        <div class="row">
-            <div class="one-route-info d-flex justify-content-center align-items-center mx-2">
+    
+        <div class="one-route-info d-flex justify-content-center align-items-center mx-2">
                 <div><i class="repeat-icon fa-solid fa-rotate-right mx-2 my-2">NR</i></div>
                 <div class="info-icon-border"><i class="one-route-icons fa-solid fa-cat"></i></div>
                 <div class="info-icon-border"><i class="one-route-icons fa-solid fa-dumbbell"></i></div>
                 <div class="info-icon-border"><i class="one-route-icons fa-solid fa-medal"></i></div>
                 <div class="info-icon-border"><span class="dot"></span></div>
-            </div>
         </div>
-
-        <div class="flip-card">
-            <div class="flip-card-inner">
-                <div class="card-front d-flex justify-content-center align-items-center flex-wrap">
+        
+        <div class="d-flex justify-content-center">
+            <div class="flip-card">
+                <div class="flip-card-inner">
+                    <div class="card-front d-flex justify-content-center align-items-center flex-wrap">
                         <div class="route-side-color border-radius-side-color green"></div>
                         <img class="route-image border-radius-route-image" src="assets/route-picture.jpg">
                         <div class="info-circle"><i class="fa-solid fa-circle-info" onclick="toggleFlip()"></i></div>
-                </div>
-
-                <div class="card-back">
-                    <p>Repetitions:<p>NR</p></p>
-                    <p>Type:<p>Triky, Power, Rewarding</p></p>
-                    <p>Setter:<p>Matei</p></p>
-
+                    </div>
+                    <div class="card-back pt-5">
+                        <div class="close-button"><i class="fa-solid fa-xmark" onclick="toggleFlip()"></i></div>
+                        <p class="fw-bold">Repetitions</p>
+                        <p>NR</p>
+                        <p class="fw-bold">Type</p>
+                        <p>Tricky, Power, Rewarding</p>
+                        <p class="fw-bold">Grade</p>
+                        <p>8A</p>
+                    </div>
+                    <div class="card-send hidden"> 
+                        <div class="close-button"><i class="fa-solid fa-xmark"></i></div>
+                        <div class="pt-5">
+                            <p class="fw-bolder">Congratulations!</p>
+                            <p>This is your hardest route so far</p>
+                            <p class="fw-bold">You sent it:</p>
+                        </div>
+                    </div>   
                 </div>
             </div>
         </div>
-
-        <div class="d-flex justify-content-center align-items-center">
+        
+    
+        <div class="send-button-container d-flex justify-content-center align-items-center mt-3">
             <button type="button" class="filter-button send-button">Send</button>
         </div>
     </div>
-        
+    
+    
     
            
     <!-- End -->

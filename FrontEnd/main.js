@@ -192,7 +192,45 @@ function toggleFlip() {
     container.classList.toggle('flipped');
 }
 
-// 
+// End
 
+// Change when pressing the Send button
+// Function to toggle between card-front and card-send
+function toggleCard() {
+    var flipCardInner = document.querySelector('.flip-card-inner');
+    var cardFront = flipCardInner.querySelector('.card-front');
+    var cardSend = flipCardInner.querySelector('.card-send');
+
+    // Toggle visibility of card-front and card-send
+    cardFront.classList.toggle('hidden');
+    cardSend.classList.toggle('hidden');
+}
+
+function toggleSendButtonText() {
+    var sendButton = document.querySelector('.send-button');
+    if (sendButton.textContent === 'Send') {
+        sendButton.textContent = 'Close';
+    } else {
+        sendButton.textContent = 'Send';
+    }
+}
+
+// Function to handle click event on the send button
+function handleSendButtonClick() {
+    toggleCard(); // Toggle to show card-send
+    toggleSendButtonText();
+}
+
+// Function to handle click event on the close button in card-send
+function handleCloseButtonClick() {
+    toggleCard();
+    toggleSendButtonText();
+}
+
+// Add event listeners to the send button and close button
+document.querySelector('.send-button').addEventListener('click', handleSendButtonClick);
+document.querySelector('.card-send .close-button').addEventListener('click', handleCloseButtonClick);
+
+// End
 
 
