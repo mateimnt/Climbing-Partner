@@ -1,6 +1,8 @@
 // Card creating function
 
-let cardSection = document.getElementById("card-section")
+// main.js
+
+let cardSection = document.getElementById("card-section");
 
 function createCard(card) {
     let cardLink = document.createElement("a");
@@ -15,7 +17,7 @@ function createCard(card) {
 
     let routeImage = document.createElement("img");
     routeImage.className = "route-image";
-    routeImage.src = `${card.pictureUrl}`;
+    routeImage.src = card.pictureUrl;
 
     let routeInfo = document.createElement("div");
     routeInfo.className = "route-info d-flex flex-column justify-content-between w-100";
@@ -23,10 +25,10 @@ function createCard(card) {
     let routeTypeIcons = document.createElement("div");
     routeTypeIcons.className = "route-type-icons d-flex justify-content-start mx-1 my-2";
 
-    card.type.forEach(typeClass => {
+    card.typeClass.forEach(typeClass => {
         let typeIconDiv = document.createElement("div");
         let typeIcon = document.createElement("i");
-        typeIcon.className = "type-icon " + "fa-solid " + typeClass;
+        typeIcon.className = "type-icon fa-solid " + typeClass;
         typeIconDiv.appendChild(typeIcon);
         routeTypeIcons.appendChild(typeIconDiv);
     });
@@ -47,7 +49,7 @@ function createCard(card) {
     repeatIconDiv.appendChild(repeatIcon);
 
     routeInfo.appendChild(routeTypeIcons);
-    routeInfo.appendChild(repeatIcon);
+    routeInfo.appendChild(repeatIconDiv);
 
     cardDiv.appendChild(sideColorDiv);
     cardDiv.appendChild(routeImage);
@@ -60,34 +62,26 @@ function createCard(card) {
     return cardLink;
 }
 
-function fetchDataAndCreateCards() {
-    fetch('data.json') 
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(cardsArray => {
-            if (cardSection !== null) {
-                Array.from(cardSection.children).forEach(existingCard => {
-                    existingCard.style.display = 'none';
-                });
-
-                cardsArray.forEach(function (card) {
-                    let routeCard = createCard(card);
-                    cardSection.appendChild(routeCard);
-                });
-            }
-        })
-        .catch(error => {
-            console.error('There was a problem with the fetch operation:', error);
-        });
+async function fetchDataAndCreateCards() {
+    try {
+      const response = await fetch('http://localhost:3000/api/routes');
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      data.forEach(cardData => {
+          const cardElement = createCard(cardData);
+          cardSection.appendChild(cardElement);
+      });
+    } catch (error) {
+      console.error('There was a problem with the fetch operation:', error);
+    }
 }
 
-
-// Call the function to fetch data and create cards
 fetchDataAndCreateCards();
+  
+  
+
 
 // End
 
