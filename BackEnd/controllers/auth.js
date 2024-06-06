@@ -7,13 +7,20 @@ const register = async (req, res, next) => {
   const { username, email, password } = req.body;
 
   try {
+    // Check if the user already exists
+    const existingUser = await User.findOne({ $or: [{ username }, { email }] });
+    if (existingUser) {
+      return res.status(400).json({ message: 'Username or email already exists' });
+    }
+
     const user = new User({ username, email, password });
     await user.save();
     res.json({ message: 'Registration successful' });
   } catch (error) {
-    next(error);
+    res.status(500).json({ message: 'Internal server error' });
   }
 };
+
 
 // Login with an existing user
 const login = async (req, res, next) => {
@@ -36,7 +43,7 @@ const login = async (req, res, next) => {
     res.json({ token });
   } catch (error) {
     next(error);
-  }
+  } 
 };
 
 module.exports = { register, login };

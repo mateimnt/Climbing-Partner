@@ -21,6 +21,6 @@ const routeCardSchema = new mongoose.Schema(
   }
 );
 
-const RouteCard = mongoose.model('routeCard', routeCardSchema);
+const RouteCard = mongoose.model('routeCards', routeCardSchema);
 
 module.exports = RouteCard;

@@ -221,10 +221,22 @@ function handleCloseButtonClick() {
     toggleSendButtonText();
 }
 
-// Add event listeners to the send button and close button
+//Add event listeners to the send button and close button
 document.querySelector('.send-button').addEventListener('click', handleSendButtonClick);
 document.querySelector('.card-send .close-button').addEventListener('click', handleCloseButtonClick);
 
 // End
+
+// Loading screen
+
+window.addEventListener('load', function() {
+    var loadingScreen = document.getElementById('loading-screen');
+    loadingScreen.style.display = 'none';
+});
+
+// End
+
+
+
 
 

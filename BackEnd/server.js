@@ -1,13 +1,10 @@
-// server.js
-
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const cardRoutes = require('./routes/routeCard');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
 require('dotenv').config(); // Load environment variables from .env file
-
-const routeCardRoutes = require('./routes/routes'); // Adjusted the path to the routes
 
 const app = express();
 
@@ -16,13 +13,9 @@ app.use(cors());
 app.use(express.json());
 
 // Routes
-app.use('/api/routes', routeCardRoutes);
-
-// Define authentication routes
 app.use('/auth', authRoutes);
-
-// Define user routes
 app.use('/user', userRoutes);
+app.use('/api', cardRoutes);
 
 const uri = process.env.MONGODB_URI; // Use environment variable for MongoDB URI
 

@@ -43,6 +43,10 @@
     color: #000000;
 }
 
+.avatar-icon{
+    font-size: 80px;
+}
+
 
 /* End icons CSS */
 
@@ -66,7 +70,34 @@
 
 /* End side colors css */
 
-/* User page CSS */
+/* Loading screen CSS */
+#loading-screen {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000; /* Ensure it covers the whole screen */
+}
+
+.spinner {
+    border: 8px solid #f3f3f3;
+    border-top: 8px solid #fcd700;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+/* End */
+
+/* Card page CSS */
 
 *{
     font-family: 'Hedvig Letters Sans', sans-serif; 
@@ -84,6 +115,7 @@
     height: 10vh;
     position: sticky;
     top: 0;
+    width: 100%;
 }
 
 .closed-filters{
@@ -200,9 +232,7 @@
 
 }
 
-/* End User Page CSS*/
-
-/* One route page CSS */
+/* End Card Page CSS*/
 
 /* One route page CSS */
 
@@ -363,6 +393,44 @@
     align-items: center;
 }
 
-
-
 /* End One route page CSS */
+
+/* Register page CSS */
+
+.register-card{
+    width: 300px;
+    text-align: center;
+}
+
+.card-header{
+    background-color: #e0b402!important;
+    color: #ffffff!important;
+    border-color: #ffffff!important;
+}
+
+.error-message {
+    color: red;
+    display: none;
+}
+
+/* End */
+
+/* User page CSS */
+
+.user-avatar{
+    height: 30vh;
+}
+
+.user-name{
+    background-color: #fcd700;
+    border-radius: 20px;
+    max-width: 200vw;
+    text-align: center;
+}
+
+.user-options{
+    background-color: #fcd700;
+    height: 50vh;
+}
+
+/*  */
