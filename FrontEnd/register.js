@@ -26,8 +26,6 @@ function validateForm(event) {
     .then(response => response.json())
     .then(data => {
         if (data.message === 'Registration successful') {
-            alert('Registration successful!');
-            // Optionally redirect to login page
             window.location.href = 'login.html';
         } else {
             alert('Registration failed: ' + data.message);

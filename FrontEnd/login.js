@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
         .then(response => response.json())
         .then(data => {
             if (data.token) {
-                alert('Login successful!');
                 // Optionally store the token
                 localStorage.setItem('token', data.token);
                 // Optionally redirect to a protected page
