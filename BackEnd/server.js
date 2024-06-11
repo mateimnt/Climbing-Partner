@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const cardRoutes = require('./routes/routeCard');
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/user');
-require('dotenv').config(); // Load environment variables from .env file
+require('dotenv').config(); 
 
 const app = express();
 

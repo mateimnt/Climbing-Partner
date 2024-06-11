@@ -23,8 +23,8 @@ const userSchema = new mongoose.Schema(
       default: 'user'
     },
     points:{
-      type: Double,
-      required: true
+      type: Number,
+      default: 0
     }
   },
   { timestamps: true }

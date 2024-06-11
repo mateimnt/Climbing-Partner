@@ -1,10 +1,8 @@
 const express = require('express');
-const { authenticate } = require('../middlewares/auth');
-
 const router = express.Router();
+const { getUsername } = require('../controllers/user');
+const { authenticate } = require('../middlewares/auth'); 
 
-router.get('/profile', authenticate, (req, res) => {
-  res.json({ message: `Welcome ${req.user.username}` });
-});
+router.get('/username', authenticate, getUsername);
 
 module.exports = router;

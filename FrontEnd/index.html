@@ -174,7 +174,7 @@
         </nav>
     
         <div class="one-route-info d-flex justify-content-center align-items-center mx-2">
-                <div><i class="repeat-icon fa-solid fa-rotate-right mx-2 my-2">NR</i></div>
+                <div><i id="repeat-icon" class="repeat-icon fa-solid fa-rotate-right mx-2 my-2">NR</i></div>
                 <div class="info-icon-border"><i class="one-route-icons fa-solid fa-cat"></i></div>
                 <div class="info-icon-border"><i class="one-route-icons fa-solid fa-dumbbell"></i></div>
                 <div class="info-icon-border"><i class="one-route-icons fa-solid fa-medal"></i></div>
@@ -185,11 +185,11 @@
             <div class="flip-card">
                 <div class="flip-card-inner">
                     <div class="card-front d-flex justify-content-center align-items-center flex-wrap">
-                        <div class="route-side-color border-radius-side-color green"></div>
+                        <div id="one-route-side-color" class="route-side-color border-radius-side-color"></div>
                         <img class="route-image border-radius-route-image" src="assets/route-picture.jpg">
                         <div class="info-circle"><i class="fa-solid fa-circle-info" onclick="toggleFlip()"></i></div>
                     </div>
-                    <div class="card-back pt-5">
+                    <div class="card-back pt-5 d-flex flex-column align-items-center">
                         <div class="close-button"><i class="fa-solid fa-xmark" onclick="toggleFlip()"></i></div>
                         <p class="fw-bold">Repetitions</p>
                         <p>NR</p>
@@ -197,13 +197,14 @@
                         <p>Tricky, Power, Rewarding</p>
                         <p class="fw-bold">Grade</p>
                         <p>8A</p>
+                        <div class="unmark-button-container d-flex align-items-center" id="unmark-button" onclick="toggleFlip()"></div>
                     </div>
                     <div class="card-send hidden"> 
                         <div class="close-button"><i class="fa-solid fa-xmark"></i></div>
                         <div class="pt-5">
                             <p class="fw-bolder">Congratulations!</p>
-                            <p>This is your hardest route so far</p>
-                            <p class="fw-bold">You sent it:</p>
+                            <p class="fw-bolder">You got <p class="fw-bolder points-message" id="points-message"></p></p>
+                            <p class="hardest-route">This is your hardest route so far</p>
                         </div>
                     </div>   
                 </div>
@@ -211,8 +212,7 @@
         </div>
         
     
-        <div class="send-button-container d-flex justify-content-center align-items-center mt-3">
-            <button type="button" class="filter-button send-button">Send</button>
+        <div class="send-button-container d-flex justify-content-center align-items-center mt-3" id="route-color">
         </div>
     </div>      
     <!-- End -->

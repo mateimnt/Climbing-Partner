@@ -341,6 +341,21 @@
     border-radius: 7px; 
 }
 
+.unmark-button{
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 400;
+    background-color: #ff0000;
+    line-height: 20px;
+    display: block;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.35);
+    width: 100%;
+    padding: 7px 3px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+}
+
 .card-send {
     background-color: #fcd700;
     color: black    ;
@@ -352,6 +367,24 @@
 
 .card-send.hidden {
     display: none;
+}
+
+.points-message{
+    color: #579914;
+    font-size: larger;
+}
+
+.fw-bolder{
+    font-size: large;
+}
+
+.hardest-route{
+    color: #ffffff;
+    background-color: #579914;
+    padding: 5px;
+    margin: 20px;
+    margin-top: 50px;
+    border-radius: 5px;
 }
 
 .fa-xmark {
