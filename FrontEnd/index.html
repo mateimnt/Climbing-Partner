@@ -164,7 +164,7 @@
         <nav class="fixed-navbar">
             <div class="container h-100">
                 <div class="row h-100">
-                    <div class="col-12 d-flex justify-content-between align-items-center h-100" onclick="showEverything()">
+                    <div class="col-12 d-flex justify-content-between align-items-center h-100" id="back-arrow" onclick="showEverything()">
                         <div class="arrow-box px-2 py-2">
                             <i class="fa-solid back-arrow fa-arrow-left"></i>
                         </div>
@@ -183,10 +183,11 @@
         
         <div class="d-flex justify-content-center">
             <div class="flip-card">
-                <div class="flip-card-inner">
+                <div class="flip-card-inner d-flex justify-content-center align-items-center flex-wrap">
                     <div class="card-front d-flex justify-content-center align-items-center flex-wrap">
                         <div id="one-route-side-color" class="route-side-color border-radius-side-color"></div>
-                        <img class="route-image border-radius-route-image" src="assets/route-picture.jpg">
+                        <img class="one-route-image border-radius-route-image" src="assets/route-picture.jpg">
+                        <div class="check-icon d-none"><i class="fa-solid fa-check"></i></div>
                         <div class="info-circle"><i class="fa-solid fa-circle-info" onclick="toggleFlip()"></i></div>
                     </div>
                     <div class="card-back pt-5 d-flex flex-column align-items-center">

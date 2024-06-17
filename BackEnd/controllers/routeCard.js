@@ -120,5 +120,51 @@ const addOrSubtractPoints = async (req, res) => {
   }
 };
 
-module.exports = {addRoute, getRoutes, getRouteDetails, addOrSubtractPoints};
+const markRouteAsSent = async (req, res) => {
+  const { routeId } = req.body;
+  const userId = req.user._id;
+
+  try {
+      const route = await Route.findById(routeId);
+      if (!route) {
+          return res.status(404).json({ message: 'Route not found' });
+      }
+
+      if (!route.sentBy.includes(userId)) {
+          route.sentBy.push(userId);
+          await route.save();
+      }
+
+      res.json({ message: 'Route marked as sent' });
+  } catch (error) {
+      console.error('Error marking route as sent:', error);
+      res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+const unmarkRouteAsSent = async (req, res) => {
+  const { routeId } = req.body;
+  const userId = req.user._id;
+
+  try {
+      const route = await Route.findById(routeId);
+      if (!route) {
+          return res.status(404).json({ message: 'Route not found' });
+      }
+
+      const index = route.sentBy.indexOf(userId);
+      if (index > -1) {
+          route.sentBy.splice(index, 1);
+          await route.save();
+      }
+
+      res.json({ message: 'Route unmarked as sent' });
+  } catch (error) {
+      console.error('Error unmarking route as sent:', error);
+      res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+
+module.exports = {addRoute, getRoutes, getRouteDetails, addOrSubtractPoints, markRouteAsSent, unmarkRouteAsSent};
 

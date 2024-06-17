@@ -214,8 +214,20 @@
 }
 
 .route-image{
-    height: 100%;
+    height: 100%;   
 }
+
+.main-check-icon{
+    position: absolute;
+    font-size: 50px;
+    left: 36px;
+    top: 36px;
+    color: #3e6c11;
+    border-radius: 30px;
+    z-index: 100;
+    
+}
+
 
 .route-side-color{
     width: 15px;
@@ -284,24 +296,48 @@
     padding-left: 20px;
     padding-right: 20px;
 }
+
+.one-route-image{
+    height: 100%;
+    
+}
+
+.image-opacity{
+    opacity: 0.6;
+}
     
 .card-front{
     height: 400px;
     width: 100%;
     overflow: hidden; 
     border-radius: 7px;
-    position: relative;
+    position: relative!important;
 } 
 
+.card-front.hidden{
+    display: none!important;
+}
+
+.check-icon{
+    position: absolute;
+    top: 130px;
+    right: 70px;
+    font-size: 100px;
+    color: #3e6c11;
+    border-radius: 30px;
+    z-index: 100;
+    
+}
 
 .fa-circle-info{
     position: absolute;
     top: 10px;
     right: 10px;
     font-size: 40px;
-    color: #ffffff;
-    background-color: #fcd700;
+    color: #fcd700;
+    background-color: #ffffff;
     border-radius: 30px;
+    z-index: 100;
 
 }
 

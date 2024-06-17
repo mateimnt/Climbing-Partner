@@ -17,7 +17,8 @@ const routeCardSchema = new mongoose.Schema(
     repeatNr: { 
       type: Number, 
       required: true 
-    }
+    },
+    sentBy: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }] 
   }
 );
 
