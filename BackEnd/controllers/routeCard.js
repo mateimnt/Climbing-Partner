@@ -13,10 +13,10 @@ const pointsMapping = {
 
 const addRoute = async (req, res) => {
   try {
-      const { sideColor, pictureUrl, typeClass, repeatNr } = req.body;
+      const { sideColor, pictureUrl, typeClass} = req.body;
 
       // Validate input
-      if (!sideColor || !pictureUrl || !Array.isArray(typeClass) || typeof repeatNr !== 'number') {
+      if (!sideColor || !pictureUrl || !Array.isArray(typeClass) ) {
           return res.status(400).json({ message: 'Invalid input data' });
       }
 
@@ -25,7 +25,6 @@ const addRoute = async (req, res) => {
           sideColor,
           pictureUrl,
           typeClass,
-          repeatNr
       });
 
       // Save the route to the database

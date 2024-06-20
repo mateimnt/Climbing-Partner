@@ -214,7 +214,8 @@
 }
 
 .route-image{
-    height: 100%;   
+    height: 100%;  
+    width: 85px; 
 }
 
 .main-check-icon{
@@ -285,7 +286,6 @@
 .dot {
     height: 30px;
     width: 30px;
-    background-color: #f7ea00;
     border-radius: 50%;
     display: inline-block;
     margin-top: 5px;

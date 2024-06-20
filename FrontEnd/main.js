@@ -72,6 +72,7 @@ function toggleColorsButtons(button) {
 
 let cardSection = document.getElementById("card-section");
 let userId;
+let currentRouteId = null;
 
 // Card creating function using DOM
 function createCard(card) {
@@ -114,7 +115,7 @@ function createCard(card) {
     let repeatIconDiv = document.createElement("div");
     let repeatIcon = document.createElement("i");
     repeatIcon.className = "repeat-icon fa-solid fa-rotate-right mx-2 my-2";
-    repeatIcon.textContent = card.repeatNr;
+    repeatIcon.textContent = card.sentBy.length;
 
     let arrowIconDiv = document.createElement("div");
     arrowIconDiv.className = "d-flex align-items-center mx-2";
@@ -324,6 +325,8 @@ function showEverything() {
     toggleRoutePage();
     updateRouteImagesOpacity();
     updateMainCheckIcon();
+    const routeId = getCurrentRouteId(); 
+    updateRepeatNumber(routeId);
 }
 
 // End
@@ -350,27 +353,62 @@ function toggleCardSend() {
 // Updating the one-route-page with the details of the selected route from main-page and updating sent/not sent scenario
 
 async function displayRouteDetails(routeId, userId) {
+  currentRouteId = routeId;
   const url = `http://localhost:3000/api/routes/${routeId}`;
   try {
-      const response = await fetch(url);
-      if (!response.ok) {
-          throw new Error('Network response was not ok');
-      }
-      const routeDetails = await response.json();
-      console.log(routeDetails);
-      const repeatIconElement = document.getElementById('repeat-icon');
-      if (repeatIconElement) {
-          repeatIconElement.innerText = routeDetails.repeatNr;
-          console.log('Updated repeatNr:', repeatIconElement.innerText); 
-      } else {
-          console.error('Repeat icon element not found.');
-      }
+    const response = await fetch(url);
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+    const routeDetails = await response.json();
+    
+    const repeatIconElement = document.getElementById('repeat-icon');
+        if (repeatIconElement) {
+            const repeatNr = routeDetails.sentBy.length;
+            repeatIconElement.innerText = repeatNr;
+            console.log('Updated repeatNr:', repeatNr); 
+        } else {
+            console.error('Repeat icon element not found.');
+        }
 
     const routeSideColorElement = document.getElementById('one-route-side-color');
     if (routeSideColorElement) {
       routeSideColorElement.classList.remove('green', 'red', 'blue', 'yellow', 'black', 'white');
       routeSideColorElement.classList.add(routeDetails.sideColor);
       console.log('Updated route-side-color:', routeDetails.sideColor); 
+    } else {
+      console.error('Route side color element not found.');
+    }
+
+    const oneRouteImageElement = document.getElementById('one-route-image');
+    if (oneRouteImageElement) {
+      oneRouteImageElement.src = routeDetails.pictureUrl; 
+      console.log('Updated image src:', oneRouteImageElement.src); 
+    } else {
+      console.error('One route image element not found.');
+    }
+
+    // Update the icons
+    const icons = routeDetails.typeClass || [];
+    for (let i = 0; i < 3; i++) {
+        const iconElement = document.getElementById(`icon-${i + 1}`);
+        const iconElementBorder = document.getElementById(`icon-border-${i + 1}`);
+        if (iconElement) {
+            if (icons[i]) {
+                iconElement.className = `one-route-icons fa-solid ${icons[i]}`;
+                iconElementBorder.className = 'info-icon-border';
+            } else {
+                iconElement.className = 'one-route-icons fa-solid';
+                iconElementBorder.className = ' ';
+            }
+        }
+    }
+
+    const colorDot = document.getElementById('color-dot');
+    if (colorDot) {
+      colorDot.classList.remove('green', 'red', 'blue', 'yellow', 'black', 'white');
+      colorDot.classList.add(routeDetails.sideColor);
+      console.log('Updated route-side-color:', colorDot.sideColor); 
     } else {
       console.error('Route side color element not found.');
     }
@@ -412,6 +450,29 @@ async function displayRouteDetails(routeId, userId) {
 
 // End
 
+function getCurrentRouteId() {
+  return currentRouteId;
+}
+
+function updateRepeatNumber(routeId) {
+  // Find the route element in the DOM
+  const routeElement = document.querySelector(`[data-route-id="${routeId}"]`);
+  if (routeElement) {
+      // Fetch the route data to get the updated sentBy field
+      fetch(`http://localhost:3000/api/routes/${routeId}`)
+          .then(response => response.json())
+          .then(routeData => {
+              // Update the repeat number based on the length of sentBy
+              const repeatIcon = routeElement.querySelector('.repeat-icon');
+              if (repeatIcon) {
+                  repeatIcon.textContent = routeData.sentBy.length;
+                  console.log(repeatIcon);
+              }
+          })
+          .catch(error => console.error('Error fetching route data:', error));
+  }
+}
+
 // Function to handle click event on the send button
 
 async function handleSendButtonClick(event) {
@@ -433,6 +494,8 @@ async function handleSendButtonClick(event) {
     }
 
     const data = await response.json();
+
+    updateRepeatNumber(routeId);
 
     button.style.display = 'none';
     document.querySelector(`.unmark-button[data-route-id="${routeId}"]`).style.display = 'block';
@@ -480,6 +543,8 @@ async function handleUnmarkButtonClick(event) {
     }
 
     const data = await response.json();
+
+    updateRepeatNumber(routeId);
 
     button.style.display = 'none';
     document.querySelector(`.send-button[data-route-id="${routeId}"]`).style.display = 'block';

@@ -27,8 +27,8 @@
             <div class="container h-100">
                 <div class="row h-100">
                     <div class="col-12 d-flex justify-content-between align-items-center h-100">
-                        <a href="competiton-page.html" class="comp-icon"><i class="fa-solid fa-crown"></i></a>
-                        <a href="gym-sector.html" class="navbar-logo h-100">
+                        <a href="ranking.html" class="comp-icon"><i class="fa-solid fa-crown"></i></a>
+                        <a href="" class="navbar-logo h-100">
                             <img class="img-fluid h-100 py-2" src="assets/logo.png" alt="logo">
                         </a>
                         <a href="login.html" class="user-icon"><i class="fa-solid fa-circle-user"></i></a>
@@ -66,9 +66,6 @@
                             <div class="button-half">
                                 <button type="button" class="filter-button" data-group="group1" onclick="toggleOneButton(this)">Old</button>
                             </div>
-                            <div class="button-half">
-                                <button type="button" class="filter-button" data-group="group1" onclick="toggleOneButton(this)">Scheduled for Removal</button>
-                            </div>
                         </div>
                         <h6 class="filter-type w-100 border-0">By Repetitions</h6>
                         <div class="filter-buttons w-100 pb-3">
@@ -77,15 +74,6 @@
                             </div>
                             <div class="button-half">
                                 <button type="button" class="filter-button" data-group="group2" onclick="toggleOneButton(this)">Few</button>
-                            </div>
-                        </div>
-                        <h6 class="filter-type w-100 border-0">By Rating</h6>
-                        <div class="filter-buttons w-100 pb-3">
-                            <div class="button-half">
-                                <button type="button" class="filter-button" data-group="group3" onclick="toggleOneButton(this)">Best</button>
-                            </div>
-                            <div class="button-half">
-                                <button type="button" class="filter-button" data-group="group3" onclick="toggleOneButton(this)">Worst</button>
                             </div>
                         </div>
                         <h2 class="filter-type w-100">Filter</h2>
@@ -109,15 +97,6 @@
                             <button type="button" class="clr-white filter-button" style="border: none;" onclick="toggleColorsButtons(this)">
                                 <i class="fa-solid fa-check hidden"></i>
                             </button>
-                        </div>
-                        <h6 class="filter-type w-100 border-0">By Setter</h6>
-                        <div class="filter-buttons w-100 pb-3">
-                            <div class="button-half">
-                                <button type="button" class="filter-button" onclick="toggleMultipleButtons(this)">Matei</button>
-                            </div>
-                            <div class="button-half">
-                                <button type="button" class="filter-button" onclick="toggleMultipleButtons(this)">Iris</button>
-                            </div>
                         </div>
                         <h6 class="filter-type w-100 border-0">By Type</h6>
                         <div class="filter-buttons w-100 pb-3">
@@ -175,10 +154,10 @@
     
         <div class="one-route-info d-flex justify-content-center align-items-center mx-2">
                 <div><i id="repeat-icon" class="repeat-icon fa-solid fa-rotate-right mx-2 my-2">NR</i></div>
-                <div class="info-icon-border"><i class="one-route-icons fa-solid fa-cat"></i></div>
-                <div class="info-icon-border"><i class="one-route-icons fa-solid fa-dumbbell"></i></div>
-                <div class="info-icon-border"><i class="one-route-icons fa-solid fa-medal"></i></div>
-                <div class="info-icon-border"><span class="dot"></span></div>
+                <div id="icon-border-1" class="info-icon-border"><i id="icon-1" class="one-route-icons fa-solid"></i></div>
+                <div id="icon-border-2" class="info-icon-border"><i id="icon-2" class="one-route-icons fa-solid"></i></div>
+                <div id="icon-border-3" class="info-icon-border"><i id="icon-3" class="one-route-icons fa-solid"></i></div>
+                <div class="info-icon-border"><span id="color-dot" class="dot"></span></div>
         </div>
         
         <div class="d-flex justify-content-center">
@@ -186,7 +165,7 @@
                 <div class="flip-card-inner d-flex justify-content-center align-items-center flex-wrap">
                     <div class="card-front d-flex justify-content-center align-items-center flex-wrap">
                         <div id="one-route-side-color" class="route-side-color border-radius-side-color"></div>
-                        <img class="one-route-image border-radius-route-image" src="assets/route-picture.jpg">
+                        <img class="one-route-image border-radius-route-image" id="one-route-image" src="">
                         <div class="check-icon d-none"><i class="fa-solid fa-check"></i></div>
                         <div class="info-circle"><i class="fa-solid fa-circle-info" onclick="toggleFlip()"></i></div>
                     </div>
