@@ -17,7 +17,7 @@ app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
 app.use('/api', cardRoutes);
 
-const uri = process.env.MONGODB_URI; // Use environment variable for MongoDB URI
+const uri = process.env.MONGODB_URI;
 
 mongoose.connect(uri);
 

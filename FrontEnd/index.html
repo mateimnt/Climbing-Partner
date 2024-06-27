@@ -27,7 +27,7 @@
             <div class="container h-100">
                 <div class="row h-100">
                     <div class="col-12 d-flex justify-content-between align-items-center h-100">
-                        <a href="ranking.html" class="comp-icon"><i class="fa-solid fa-crown"></i></a>
+                        <a href="ranking.html" class="ranking-button d-none comp-icon"><i class="fa-solid fa-crown"></i></a>
                         <a href="" class="navbar-logo h-100">
                             <img class="img-fluid h-100 py-2" src="assets/logo.png" alt="logo">
                         </a>
@@ -44,7 +44,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12 d-flex flex-column justify-content-center align-items-center pt-5">
-                        <h5 class="no-of-routes">10 Routes</h5>
+                        <h5 id="no-of-routes" class="no-of-routes">Loading...</h5>
                         <button type="button" class="filter-options-button btn mt-3 " onclick="toggleFilterSection()">Filter Options</button>
                     </div>
                 </div>
@@ -61,65 +61,65 @@
                         <h6 class="filter-type w-100 border-0">By Date</h6>
                         <div class="filter-buttons w-100 pb-3">
                             <div class="button-half">
-                                <button type="button" class="filter-button" data-group="group1" onclick="toggleOneButton(this)">New</button>
+                                <button id="newBtn" type="button" class="filter-button" data-group="group1" onclick="toggleOneButton(this)">New</button>
                             </div>
                             <div class="button-half">
-                                <button type="button" class="filter-button" data-group="group1" onclick="toggleOneButton(this)">Old</button>
+                                <button id="oldBtn" type="button" class="filter-button" data-group="group1" onclick="toggleOneButton(this)">Old</button>
                             </div>
                         </div>
                         <h6 class="filter-type w-100 border-0">By Repetitions</h6>
                         <div class="filter-buttons w-100 pb-3">
                             <div class="button-half">
-                                <button type="button" class="filter-button" data-group="group2" onclick="toggleOneButton(this)">Many</button>
+                                <button id="manyBtn" type="button" class="filter-button" data-group="group2" onclick="toggleOneButton(this)">Many</button>
                             </div>
                             <div class="button-half">
-                                <button type="button" class="filter-button" data-group="group2" onclick="toggleOneButton(this)">Few</button>
+                                <button id="fewBtn" type="button" class="filter-button" data-group="group2" onclick="toggleOneButton(this)">Few</button>
                             </div>
                         </div>
                         <h2 class="filter-type w-100">Filter</h2>
-                        <h6 class="filter-type w-100 border-0">By Tape Color</h6>
+                        <h6 class="filter-type w-100 border-0">By Difficulty Color</h6>
                         <div class="filter-buttons d-flex  justify-content-between w-100 pb-3">
-                            <button type="button" class="clr-green filter-button" style="border: none;" onclick="toggleColorsButtons(this)">
-                                <i class="fa-solid fa-check hidden"></i>
+                            <button id="greenBtn" type="button" class="clr-green filter-button" style="border: none;" >
+                                <i class="fa-solid fa-check color-icon hidden"></i>
                             </button>
-                            <button type="button" class="clr-red filter-button" style="border: none;" onclick="toggleColorsButtons(this)">
-                                <i class="fa-solid fa-check hidden"></i>
+                            <button id="redBtn" type="button" class="clr-red filter-button" style="border: none;" >
+                                <i class="fa-solid fa-check color-icon hidden"></i>
                             </button>
-                            <button type="button" class="clr-yellow filter-button" style="border: none;" onclick="toggleColorsButtons(this)">
-                                <i class="fa-solid fa-check hidden"></i>
+                            <button id="yellowBtn" type="button" class="clr-yellow filter-button" style="border: none;" >
+                                <i class="fa-solid fa-check color-icon hidden"></i>
                             </button>
-                            <button type="button" class="clr-blue filter-button" style="border: none;" onclick="toggleColorsButtons(this)">
-                                <i class="fa-solid fa-check hidden"></i>
+                            <button id="blueBtn" type="button" class="clr-blue filter-button" style="border: none;" >
+                                <i class="fa-solid fa-check color-icon hidden"></i>
                             </button>
-                            <button type="button" class="clr-black filter-button" style="border: none;" onclick="toggleColorsButtons(this)">
-                                <i class="fa-solid fa-check hidden"></i>
+                            <button id="blackBtn" type="button" class="clr-black filter-button" style="border: none;" >
+                                <i class="fa-solid fa-check color-icon hidden"></i>
                             </button>
-                            <button type="button" class="clr-white filter-button" style="border: none;" onclick="toggleColorsButtons(this)">
-                                <i class="fa-solid fa-check hidden"></i>
+                            <button id="whiteBtn" type="button" class="clr-white filter-button" style="border: none;" >
+                                <i class="fa-solid fa-check color-icon hidden"></i>
                             </button>
                         </div>
                         <h6 class="filter-type w-100 border-0">By Type</h6>
                         <div class="filter-buttons w-100 pb-3">
                             <div class="button-half">
-                                <button type="button" class="filter-button" onclick="toggleMultipleButtons(this)"> 
+                                <button id="fa-dumbbell" type="button" class="filter-button" onclick="toggleTypeButton(this)"> 
                                     Power     
                                     <i class="filter-icon fa-solid fa-dumbbell mx-1" aria-hidden="true"></i>    
                                 </button>
                             </div>
                             <div class="button-half">
-                                <button type="button" class="filter-button" onclick="toggleMultipleButtons(this)">
+                                <button id="fa-cat" type="button" class="filter-button" onclick="toggleTypeButton(this)">
                                     Tricky     
                                     <i class="filter-icon fa-solid fa-cat mx-1" aria-hidden="true"></i>    
                                 </button>
                             </div>
                             <div class="button-half">
-                                <button type="button" class="filter-button" onclick="toggleMultipleButtons(this)">
+                                <button id="fa-medal" type="button" class="filter-button" onclick="toggleTypeButton(this)">
                                     Rewarding     
                                     <i class="filter-icon fa-solid fa-medal mx-1" aria-hidden="true"></i>    
                                 </button>
                             </div>
                         </div>
-                        
+                        <button type="button" class="filter-options-button close-filters-button btn mt-3 mb-3" onclick="toggleFilterSection()">Close Filters</button>
                     </div>
                 </div>
             </div>
@@ -171,20 +171,17 @@
                     </div>
                     <div class="card-back pt-5 d-flex flex-column align-items-center">
                         <div class="close-button"><i class="fa-solid fa-xmark" onclick="toggleFlip()"></i></div>
-                        <p class="fw-bold">Repetitions</p>
-                        <p>NR</p>
-                        <p class="fw-bold">Type</p>
-                        <p>Tricky, Power, Rewarding</p>
-                        <p class="fw-bold">Grade</p>
-                        <p>8A</p>
-                        <div class="unmark-button-container d-flex align-items-center" id="unmark-button" onclick="toggleFlip()"></div>
+                        <p class="fw-bolder card-back-text mt-3">Repetitions</p>
+                        <p id="repetitions-card-back" class="card-back-info-text">NR</p>
+                        <p class="fw-bolder card-back-text">Type</p>
+                        <p id="types-card-back">Tricky, Power, Rewarding</p>
+                        <div class="unmark-button-container d-flex align-items-center mt-3" id="unmark-button" onclick="toggleFlip()"></div>
                     </div>
                     <div class="card-send hidden"> 
                         <div class="close-button"><i class="fa-solid fa-xmark"></i></div>
-                        <div class="pt-5">
-                            <p class="fw-bolder">Congratulations!</p>
+                        <div class="pt-5 d-flex align-items-center flex-column">
+                            <p class="fw-bolder mt-5">Congratulations!</p>
                             <p class="fw-bolder">You got <p class="fw-bolder points-message" id="points-message"></p></p>
-                            <p class="hardest-route">This is your hardest route so far</p>
                         </div>
                     </div>   
                 </div>

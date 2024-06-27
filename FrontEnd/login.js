@@ -19,7 +19,13 @@ document.addEventListener('DOMContentLoaded', (event) => {
                 // Optionally store the token
                 localStorage.setItem('token', data.token);
                 // Optionally redirect to a protected page
-                window.location.href = 'profile.html';
+                if(data.role === 'admin'){
+                window.location.href = 'admin.html';
+                }
+                else{
+                    window.location.href = 'profile.html';
+                }
+
             } else {
                 alert('Login failed: ' + data.message);
             }

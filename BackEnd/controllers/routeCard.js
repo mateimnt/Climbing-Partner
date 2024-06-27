@@ -129,8 +129,9 @@ const markRouteAsSent = async (req, res) => {
           return res.status(404).json({ message: 'Route not found' });
       }
 
-      if (!route.sentBy.includes(userId)) {
-          route.sentBy.push(userId);
+      const alreadySent = route.sentBy.some(entry => entry.userId.toString() === userId.toString());
+      if (!alreadySent) {
+          route.sentBy.push({ userId, date: new Date() });
           await route.save();
       }
 
@@ -151,7 +152,7 @@ const unmarkRouteAsSent = async (req, res) => {
           return res.status(404).json({ message: 'Route not found' });
       }
 
-      const index = route.sentBy.indexOf(userId);
+      const index = route.sentBy.findIndex(entry => entry.userId.toString() === userId.toString());
       if (index > -1) {
           route.sentBy.splice(index, 1);
           await route.save();

@@ -35,6 +35,10 @@
     </nav>
     <!-- End -->
 
+    <!-- Profile elements -->
+
+    <div class="profile-elements">
+
     <!-- User avatar -->
     <div class="user-profile-page">
         <div class="container h-100">
@@ -47,7 +51,7 @@
             </div>
         </div>
     </div>
-    <!--  -->
+    <!-- End user avatar  -->
 
     <!-- User options -->
     <div class="container d-flex justify-content-center align-items-center">
@@ -60,19 +64,47 @@
                 </div>
                 <div class="line"></div>
                 <div class="user-actions pb-4 d-flex flex-column align-items-center">
-                    <button type="button" class="option-button">Full Stats</button>
+                    <button type="button" class="option-button" onclick="hideProfileElements()">Full Stats</button>
                     <button type="button" class="option-button">Profile</button>
                     <button type="button" class="sign-out-button">Sign Out</button>
                 </div>
             </div>
         </div>
     </div>
-    <!--  -->
+    <!-- End user options  -->
+
+    </div>
+    <!-- End profile elements -->
+
+    <!-- Full stats -->
+
+    <div class="full-stats d-none">
+        <h6 class="mt-5 mx-2">Total no. of routes / Difficulty</h6>
+        <div class="chart-container mt-3 d-flex flex-column">
+                <div class="buttons-container d-flex justify-content-center align-items-center">
+                    <div class="button-group mt-2 px-1">
+                        <button id="weekBtn" onclick="handleWeekButtonClick()" class="active">Week</button>
+                        <button id="monthBtn" onclick="handleMonthButtonClick()">Month</button>
+                        <button id="yearBtn" onclick="handleYearButtonClick()">Year</button>
+                    </div>
+                </div>
+                <div class="total-container mx-2">
+                    <div class="total-label">Total</div>
+                    <div class="total-number" id="totalNumber">0</div>
+                </div>
+                <div class="fit-chart">
+                    <canvas id="myBarChart"></canvas>
+                </div>
+        </div>
+    </div>
+
+    <!-- End -->
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://kit.fontawesome.com/2e1c8b4382.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="profile.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </body>
 </html>

@@ -42,24 +42,21 @@ window.onload = function () {
     toggleOneButton(defaultGroup3Button);
 };
 
-function toggleMultipleButtons(button) {
-    if (button.style.backgroundColor === 'white') {
-        button.style.backgroundColor = '#C1C1C1';
-    } else {
-        button.style.backgroundColor = 'white';
-    }
-}
 
+// Toggle color buttons
 function toggleColorsButtons(button) {
-    var icon = button.querySelector('.fa-check');
+  const icon = button.querySelector('.color-icon');
+  icon.classList.toggle('hidden');
 
-    icon.classList.toggle('hidden');
+  const color = button.id.replace('Btn', '').toLowerCase(); // Extract color from button ID
 
-    if (!icon.classList.contains('hidden')) {
-        button.style.backgroundColor = '';
-    } else {
-        button.style.backgroundColor = '';
-    }
+  if (activeColors.has(color)) {
+      activeColors.delete(color); // Remove color if it's already active
+  } else {
+      activeColors.add(color); // Add color if it's not active
+  }
+
+  renderCards(currentSortOrder, currentFilter); // Re-render cards based on active filters
 }
 
 // End
@@ -73,6 +70,8 @@ function toggleColorsButtons(button) {
 let cardSection = document.getElementById("card-section");
 let userId;
 let currentRouteId = null;
+const token = localStorage.getItem('token');
+console.log(token);
 
 // Card creating function using DOM
 function createCard(card) {
@@ -92,7 +91,7 @@ function createCard(card) {
     routeImage.setAttribute("data-route-id", card._id);
 
     let mainCheckIconContainer = document.createElement("div");
-    mainCheckIconContainer.className = "main-check-icon";
+    mainCheckIconContainer.className = "main-check-icon d-none";
     mainCheckIconContainer.setAttribute("data-route-id", card._id);
 
     let mainCheckIcon = document.createElement("i");
@@ -145,6 +144,7 @@ function createCard(card) {
 // End
 
 // Get user ID 
+if(token != null){
 document.addEventListener('DOMContentLoaded', async function() {
   try {
       const userResponse = await fetch('http://localhost:3000/user/details', {
@@ -166,47 +166,169 @@ document.addEventListener('DOMContentLoaded', async function() {
       console.error('Error fetching user details or routes:', error);
   }
 });
+}
 
 // End
 
 // Create the cards with the data from the data base
+let routeCards = []; // To store fetched route cards
+let currentSortOrder = 'new';
+let currentFilter = null;
+let activeColors = new Set(); // To store active colors
+let activeTypes = new Set(); // To store active types
+
+// Fetch route cards from backend and create cards
 async function fetchDataAndCreateCards() {
     try {
-      const response = await fetch('http://localhost:3000/api/routes');
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      const data = await response.json();
-      console.log(data);
-      data.forEach(cardData => {
-          const cardElement = createCard(cardData);
-          cardSection.appendChild(cardElement);
-          if (!cardElement.hasEventListenerAdded) {
-            cardElement.addEventListener('click', (event) => {
-                event.preventDefault(); 
-                const routeId = cardElement.getAttribute('data-route-id'); 
-                handleCardClick(routeId);
-                displayRouteDetails(routeId, userId);
-                hideEverything(); 
-            });
-            cardElement.hasEventListenerAdded = true; 
+        const response = await fetch('http://localhost:3000/api/routes');
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
         }
-      });
+        const data = await response.json();
+        routeCards = data; // Store fetched data
+        renderCards(currentSortOrder, currentFilter); // Render cards based on the initial sort order and filter
     } catch (error) {
-      console.error('There was a problem with the fetch operation:', error);
+        console.error('There was a problem with the fetch operation:', error);
     }
 }
 
+// Render cards based on sort order, filter, and active colors
+function renderCards(sortOrder, filter) {
+    if(token != null){
+      updateRouteImagesOpacity();
+    }
+    if(token != null){
+      updateMainCheckIcon();
+    }
+    // Clear the card section
+    cardSection.innerHTML = '';
+
+    // Apply filter and sorting
+    let filteredData = routeCards;
+
+    if (activeColors.size > 0) {
+        filteredData = filteredData.filter(card => activeColors.has(card.sideColor));
+    }
+
+    if (activeTypes.size > 0) {
+      filteredData = filteredData.filter(card => 
+          [...activeTypes].every(type => card.typeClass.includes(type))
+      );
+  }
+
+    if (filter === 'many') {
+        filteredData = sortByRepetitionsDescending(filteredData);
+    } else if (filter === 'few') {
+        filteredData = sortByRepetitionsAscending(filteredData);
+    } else if (sortOrder === 'new') {
+        filteredData = sortByNew(filteredData);
+    } else if (sortOrder === 'old') {
+        filteredData = sortByOld(filteredData);
+    }
+
+    // Update number of routes
+    const noOfRoutes = filteredData.length;
+    const noOfRoutesElement = document.getElementById('no-of-routes');
+    noOfRoutesElement.textContent = `${noOfRoutes} Routes`;
+
+    // Create and append card elements
+    filteredData.forEach(cardData => {
+        const cardElement = createCard(cardData);
+        cardSection.appendChild(cardElement);
+        if (!cardElement.hasEventListenerAdded) {
+            cardElement.addEventListener('click', (event) => {
+                event.preventDefault();
+                const routeId = cardElement.getAttribute('data-route-id');
+                handleCardClick(routeId);
+                displayRouteDetails(routeId, userId);
+                hideEverything();
+            });
+            cardElement.hasEventListenerAdded = true;
+        }
+    });
+}
+
+// Sort functions
+function sortByNew(data) {
+    return data.slice().sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+}
+
+function sortByOld(data) {
+    return data.slice().sort((a, b) => new Date(a.createdAt) - new Date(b.createdAt));
+}
+
+function sortByRepetitionsDescending(data) {
+    return data.slice().sort((a, b) => b.sentBy.length - a.sentBy.length);
+}
+
+function sortByRepetitionsAscending(data) {
+    return data.slice().sort((a, b) => a.sentBy.length - b.sentBy.length);
+}
+
+// Toggle type buttons
+function toggleTypeButton(button) {
+  button.classList.toggle('active');
+
+  const typeClass = button.id; // Use button ID as the type
+
+  if (activeTypes.has(typeClass)) {
+      activeTypes.delete(typeClass); // Remove type if it's already active
+      button.style.backgroundColor = ''; // Change background to grey when inactive
+  } else {
+      activeTypes.add(typeClass); // Add type if it's not active
+      button.style.backgroundColor = 'white'; // Change background to white when active
+  }
+
+  renderCards(currentSortOrder, currentFilter); // Re-render cards based on active filters
+}
+
+// Add event listeners to sort and filter buttons
+document.getElementById('newBtn').addEventListener('click', () => {
+    currentSortOrder = 'new';
+    currentFilter = null;
+    renderCards(currentSortOrder, currentFilter);
+});
+
+document.getElementById('oldBtn').addEventListener('click', () => {
+    currentSortOrder = 'old';
+    currentFilter = null;
+    renderCards(currentSortOrder, currentFilter);
+});
+
+document.getElementById('manyBtn').addEventListener('click', () => {
+    currentFilter = 'many';
+    currentSortOrder = null;
+    renderCards(currentSortOrder, currentFilter);
+});
+
+document.getElementById('fewBtn').addEventListener('click', () => {
+    currentFilter = 'few';
+    currentSortOrder = null;
+    renderCards(currentSortOrder, currentFilter);
+});
+
+// Add event listeners to color filter buttons
+document.querySelectorAll('.clr-green, .clr-red, .clr-yellow, .clr-blue, .clr-black, .clr-white').forEach(button => {
+    button.addEventListener('click', () => toggleColorsButtons(button));
+});
+
+// Initial fetch and render
 fetchDataAndCreateCards();
+
+
 // End
 
+if(token != null){
 document.addEventListener('DOMContentLoaded', async function() {
   updateRouteImagesOpacity();
 });
+}
 
+if(token != null){
 document.addEventListener('DOMContentLoaded', async function() {
   updateMainCheckIcon();
 });
+}
 
 async function updateRouteImagesOpacity() {
   try {
@@ -228,6 +350,7 @@ async function updateRouteImagesOpacity() {
     // Fetch routes
     const response = await fetch('http://localhost:3000/api/routes');
     const routes = await response.json();
+    console.log(routes);
 
     // Get all route images
     const routeImages = document.querySelectorAll('.route-image');
@@ -236,16 +359,17 @@ async function updateRouteImagesOpacity() {
       const routeId = image.getAttribute('data-route-id');
       const route = routes.find(route => route._id === routeId);
 
-      if (route && route.sentBy.includes(userId)) {
+      if (route && route.sentBy.some(entry => entry.userId.toString() === userId.toString())) {
         image.classList.add('image-opacity');
-       } else {
-         image.classList.remove('image-opacity');
-      }
+    } else {
+        image.classList.remove('image-opacity');
+    }    
     });
   } catch (error) {
     console.error('Error fetching user details or routes:', error);
   }
 }
+
 
 async function updateMainCheckIcon() {
   try {
@@ -275,7 +399,7 @@ async function updateMainCheckIcon() {
       const routeId = icon.getAttribute('data-route-id');
       const route = routes.find(route => route._id === routeId);
 
-      if (route && route.sentBy.includes(userId)) {
+      if (route && route.sentBy.some(entry => entry.userId.toString() === userId.toString())) {
         icon.classList.remove('d-none');
        } else {
          icon.classList.add('d-none');
@@ -354,6 +478,11 @@ function toggleCardSend() {
 
 async function displayRouteDetails(routeId, userId) {
   currentRouteId = routeId;
+  const typeMapping = {
+    'fa-dumbbell': 'Power',
+    'fa-cat': 'Tricky',
+    'fa-medal': 'Rewarding'
+  };
   const url = `http://localhost:3000/api/routes/${routeId}`;
   try {
     const response = await fetch(url);
@@ -370,6 +499,15 @@ async function displayRouteDetails(routeId, userId) {
         } else {
             console.error('Repeat icon element not found.');
         }
+    
+    const repeatitionsCardBack = document.getElementById('repetitions-card-back');
+    if (repeatitionsCardBack) {
+        const repeatNr = routeDetails.sentBy.length;
+        repeatitionsCardBack.innerText = repeatNr;
+        console.log('Updated repeatNr:', repeatNr); 
+    } else {
+        console.error('Repeat icon element not found.');
+    }
 
     const routeSideColorElement = document.getElementById('one-route-side-color');
     if (routeSideColorElement) {
@@ -404,6 +542,11 @@ async function displayRouteDetails(routeId, userId) {
         }
     }
 
+     // New code for displaying type names
+     const typeNames = icons.map(icon => typeMapping[icon]).filter(name => name);
+     const typesParagraph = document.getElementById('types-card-back');
+     typesParagraph.textContent = typeNames.join(', ');
+ 
     const colorDot = document.getElementById('color-dot');
     if (colorDot) {
       colorDot.classList.remove('green', 'red', 'blue', 'yellow', 'black', 'white');
@@ -419,7 +562,9 @@ async function displayRouteDetails(routeId, userId) {
     sendButton.className = 'filter-button send-button';
     sendButton.textContent = 'Send';
     sendButton.dataset.routeId = routeId;
-    sendButtonContainer.appendChild(sendButton);
+    if(token != null){
+      sendButtonContainer.appendChild(sendButton);
+    }
     sendButton.addEventListener('click', handleSendButtonClick);
 
     const unmarkButtonContainer = document.getElementById('unmark-button');
@@ -433,7 +578,7 @@ async function displayRouteDetails(routeId, userId) {
     unmarkButton.addEventListener('click', handleUnmarkButtonClick);
 
     if (sendButton && unmarkButton){
-      if (routeDetails.sentBy.includes(userId)) {
+      if (routeDetails.sentBy.some(entry => entry.userId.toString() === userId.toString())) {
           sendButton.style.display = 'none';
           unmarkButton.style.display = 'block';
           // oneRouteImage.style.opacity = '0.5';
@@ -642,8 +787,6 @@ window.addEventListener('load', function() {
 
 document.addEventListener('DOMContentLoaded', async function() {
   const userIconLink = document.querySelector('.user-icon');
-  const token = localStorage.getItem('token');
-  console.log(token);
 
   if (token) {
     try {
@@ -671,6 +814,13 @@ document.addEventListener('DOMContentLoaded', async function() {
 
 });
 // End
+
+// Hide ranking button if not logged in
+const rankingButton = document.querySelector('.ranking-button');
+if(token != null){
+  rankingButton.classList.remove('d-none');
+}
+// 
 
 // End card js
 

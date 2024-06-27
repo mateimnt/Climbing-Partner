@@ -52,20 +52,28 @@
 
 /* Side colors css */
 
+.yellow{
+    background-color: rgb(255, 255, 0) ;
+}
+
 .green{
-    background-color: green;
+    background-color: rgb(0, 128, 0);
 }
 
 .black{
-    background-color: #000000;
+    background-color: rgb(0, 0, 0);
 }
 
 .red{
-    background-color: red;
+    background-color: rgb(255, 0, 0);
 }
 
 .blue{
-    background-color: blue;
+    background-color: rgb(0, 0, 255);
+}
+
+.white{
+    background-color: rgb(255, 255, 255);
 }
 
 /* End side colors css */
@@ -79,7 +87,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 10000; /* Ensure it covers the whole screen */
+    z-index: 10000; 
 }
 
 .spinner {
@@ -116,6 +124,7 @@
     position: sticky;
     top: 0;
     width: 100%;
+    z-index: 100;
 }
 
 .closed-filters{
@@ -141,6 +150,11 @@
     text-decoration: none;
     color: white!important;
     background-color: #e0b402!important;
+}
+
+.close-filters-button{
+    color: #e0b402!important;
+    background-color: white!important;
 }
 
 .filter-type{
@@ -172,33 +186,33 @@
     border-radius: 5px;
 }
 
-.clr-green{
+.clr-green, .admin-clr-green{
     height: 40px;
     background-color: green!important;
     color: white!important;
 }
 
-.clr-red{
+.clr-red, .admin-clr-red{
     background-color: red!important;
     color: white!important;
 }
 
-.clr-yellow{
-    background-color: yellow!important;
+.clr-yellow, .admin-clr-yellow{
+    background-color: rgb(255, 255, 0)!important;
     color: #000000!important;
 }
 
-.clr-blue{
+.clr-blue, .admin-clr-blue{
     background-color: blue!important    ;
     color: white!important;
 }
 
-.clr-black{
+.clr-black, .admin-clr-black{
     background-color: rgb(48, 47, 47)!important;
     color: white!important;
 }
 
-.clr-white{
+.clr-white, .admin-clr-white{
     background-color: white!important;
     color: black!important;
 }
@@ -225,7 +239,7 @@
     top: 36px;
     color: #3e6c11;
     border-radius: 30px;
-    z-index: 100;
+    z-index: 50;
     
 }
 
@@ -325,7 +339,7 @@
     font-size: 100px;
     color: #3e6c11;
     border-radius: 30px;
-    z-index: 100;
+    z-index: 99;
     
 }
 
@@ -377,6 +391,14 @@
     border-radius: 7px; 
 }
 
+.card-back-text{
+    font-size: 20px!important;
+}
+
+.card-back-info-text{
+    font-size: 20px;
+}
+
 .unmark-button{
     text-decoration: none;
     color: #ffffff;
@@ -390,6 +412,7 @@
     margin: 5px;
     border: none;
     border-radius: 5px;
+    z-index: 100;
 }
 
 .card-send {
@@ -407,7 +430,10 @@
 
 .points-message{
     color: #579914;
-    font-size: larger;
+    font-size: 25px!important;
+    background-color: #e0b402;
+    border-radius: 5px;
+    width: 80%;
 }
 
 .fw-bolder{
@@ -539,3 +565,167 @@
 }
 
 /*  */
+
+/* Stats */
+.chart-container {
+    position: relative;
+    width: 340px;
+    height: 300px;
+    margin: 0 auto;
+    background-color: #e8e8e8;
+    border-radius: 10px;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.35) ;
+}
+
+.chart-header {
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.total-label {
+    font-size: 14px;
+    color: #9a9999;
+}
+.total-number {
+    font-size: 20px;
+    font-weight: bold;
+}
+.button-group {
+    gap: 5px;
+    margin-bottom: 10px;
+    background-color: #d2d2d2;
+    border-radius: 6px;
+}
+.button-group button {
+    margin-bottom: 2px ;
+    margin-top: 2px;
+    padding: 5px 10px;
+    border: none;
+    background-color: #d2d2d2;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    outline: none;
+}
+.button-group button.active {
+    background-color: white;
+    color: black;
+}
+
+/* Ranking */
+
+.ranking-table {
+    width: 70%;
+    margin: 50px auto;
+    border-collapse: collapse;
+}
+.ranking-table th, .ranking-table td {
+    text-align: center;
+    padding: 10px;
+}
+.ranking-table tr:not(:last-child) {
+    border-bottom: 1px solid black;
+}
+
+table tr td {
+    background-color: transparent; 
+}
+
+.gold-background {
+    background-color: #fff3af; 
+}
+
+.silver-background {
+    background-color: #d3d3d3; 
+}
+
+.bronze-background {
+    background-color: #e3aa70; 
+}
+
+
+/* End */
+
+/* Admin page*/
+
+.fixed-admin-navbar{
+    background-color: #99ca2a!important;
+}
+
+.closed-admin-filters{
+    background-color: #99ca2a!important;
+}
+
+.filter-options-admin-button{
+    background-color: #717d2d!important;
+}
+
+.filter-admin-section{
+    background-color: #99ca2a!important;
+}
+
+.close-filters-admin-button{
+    color: #99ca2a!important;
+}
+
+.add-route-button {
+    position: sticky;
+    bottom: 20px;
+    width: 60px;
+    height: 60px;
+    background-color: #99ca2a;
+    border-radius: 50%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); 
+    cursor: pointer;
+    margin: 0 auto; 
+    left: 0;
+    right: 0;
+}
+
+.add-route-page{
+   height: 100vh;
+}
+
+.add-route-dot {
+    font-size: 30px;
+    color: #000000; 
+}
+
+.add-image-container{
+    background-color: #ebebeb;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px;
+}
+
+.add-image-url{
+    height: 300px;
+}
+
+.fa-image{
+   font-size: 200px;
+}
+
+.type-button{
+    text-decoration: none;
+    color: #000000;
+    font-weight: 400;
+    background-color: #C1C1C1;
+    line-height: 20px;
+    display: block;
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.35);
+    width: 100%;
+    padding: 7px 3px;
+    margin: 5px;
+    border: none;
+    border-radius: 5px;
+}
+
+.type-button.active {
+    background-color: white;
+}
+
+/* End */

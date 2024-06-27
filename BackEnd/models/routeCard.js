@@ -14,8 +14,12 @@ const routeCardSchema = new mongoose.Schema(
       type: [String], 
       required: true 
     },
-    sentBy: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }] 
-  }
+    sentBy: [{
+      userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
+      date: { type: Date, default: Date.now }
+    }]
+  },
+  { timestamps: true }
 );
 
 const RouteCard = mongoose.model('routeCards', routeCardSchema);
